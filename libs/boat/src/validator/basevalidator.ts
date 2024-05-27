@@ -1,11 +1,17 @@
 import { startCase, isEmpty } from 'lodash';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { Injectable, Type } from '@nestjs/common';
+import { ArgumentsHost, Injectable, Type } from '@nestjs/common';
 import { ValidationFailed } from '../exceptions';
 
 @Injectable()
 export class BaseValidator {
+  host: ArgumentsHost;
+
+  setHost(host: ArgumentsHost) {
+    this.host = host;
+  }
+
   async fire<T>(inputs: Record<string, any>, schemaMeta: Type<T>): Promise<T> {
     const schema: T = plainToClass(schemaMeta, inputs);
     const errors = await validate(schema as Record<string, any>, {
