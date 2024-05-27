@@ -12,6 +12,11 @@ import { UserRepository } from './repositories/user/database';
 import { Repositories } from './constants';
 import { JwtModule } from '@nestjs/jwt';
 import { CreateUserCommand } from './commands/createUser';
+import { UserController } from './controllers';
+import { GroupsController } from './controllers/groups';
+import { UserService } from './services';
+import { GroupsService } from './services/groups';
+import { GroupRepository } from './repositories';
 
 @Module({
   imports: [
@@ -34,12 +39,15 @@ import { CreateUserCommand } from './commands/createUser';
       useFactory: (config: ConfigService) => config.get('auth'),
     }),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController, GroupsController],
   providers: [
     JwtStrategy,
     AuthService,
     { provide: Repositories.USER_REPO, useClass: UserRepository },
+    { provide: Repositories.GROUPS_REPO, useClass: GroupRepository },
     CreateUserCommand,
+    UserService,
+    GroupsService,
   ],
 })
 export class AppModule {}

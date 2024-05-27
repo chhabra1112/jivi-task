@@ -15,6 +15,8 @@ exports.up = async function (knex) {
     .createTableIfNotExists('groups', (table) => {
       table.string('id', 26).index().primary();
       table.string('name');
+      table.boolean('simplify').defaultTo(false);
+
       table.string('user_id');
       timestamps(knex, table);
     })

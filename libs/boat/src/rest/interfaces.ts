@@ -1,5 +1,6 @@
 import { Request as BaseRequest } from 'express';
 import { Response as BaseResponse } from 'express';
+import { BaseModel } from '@squareboat/nestjs-objection';
 
 export interface Request extends BaseRequest {
   /**
@@ -10,7 +11,7 @@ export interface Request extends BaseRequest {
   /**
    * Get the current user from the request object
    */
-  user: Record<string, any>;
+  user: BaseModel;
 }
 
 export interface Response extends BaseResponse {
