@@ -1,0 +1,439 @@
+{
+  "collection": {
+    "info": {
+      "_postman_id": "1365337b-093a-4327-90aa-74e0b7f58806",
+      "name": "SplitApp",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2024-05-27T22:03:47.000Z",
+      "uid": "12263892-1365337b-093a-4327-90aa-74e0b7f58806",
+      "createdAt": null,
+      "lastUpdatedBy": null
+    },
+    "item": [
+      {
+        "name": "Auth",
+        "item": [
+          {
+            "name": "Password Login",
+            "id": "3c6551f4-6bb8-4ae5-aa49-9b0c7e5c19b0",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"12345678\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/password-login",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "password-login"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-3c6551f4-6bb8-4ae5-aa49-9b0c7e5c19b0"
+          },
+          {
+            "name": "Send Login OTP",
+            "id": "323b99a0-3abc-4131-996f-b9734e5b1b26",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    // \"email\": \"admin@example.com\",\r\n    \"countryCode\":\"+91\",\r\n    \"phoneNumber\":\"9876543210\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/send-otp",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "send-otp"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-323b99a0-3abc-4131-996f-b9734e5b1b26"
+          },
+          {
+            "name": "Verify OTP",
+            "id": "c1f0eeee-364c-45c4-8ab6-c21d0e9efd49",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    // \"email\": \"admin@example.com\",\r\n    \"countryCode\": \"+91\",\r\n    \"phoneNumber\": \"9876543211\",\r\n    \"otp\": \"1111\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/verify-otp",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "verify-otp"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-c1f0eeee-364c-45c4-8ab6-c21d0e9efd49"
+          }
+        ],
+        "id": "fc76cd5b-aaee-4110-8bd3-abecd5c382d7",
+        "uid": "12263892-fc76cd5b-aaee-4110-8bd3-abecd5c382d7"
+      },
+      {
+        "name": "Groups",
+        "item": [
+          {
+            "name": "Create Group",
+            "id": "ac9b4dd0-4861-43c2-9adb-c0c53a9818e0",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\":\"My first Group\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/groups",
+                "host": ["{{base_url}}"],
+                "path": ["groups"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-ac9b4dd0-4861-43c2-9adb-c0c53a9818e0"
+          },
+          {
+            "name": "Get My Groups",
+            "id": "5a914428-724e-434a-ba39-f89275f4b8ae",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/groups/my-groups",
+                "host": ["{{base_url}}"],
+                "path": ["groups", "my-groups"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-5a914428-724e-434a-ba39-f89275f4b8ae"
+          },
+          {
+            "name": "Add Members",
+            "id": "0bd10273-36db-4205-a875-3e6e3e56726f",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"members\":[\"01HYXFF5V96W3YK4TF3F9JDFDE\"]\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/groups/:groupId/add-members",
+                "host": ["{{base_url}}"],
+                "path": ["groups", ":groupId", "add-members"],
+                "variable": [
+                  {
+                    "key": "groupId",
+                    "value": "01HYXFEBAC4V4HYGMT72Z75PBV"
+                  }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "12263892-0bd10273-36db-4205-a875-3e6e3e56726f"
+          },
+          {
+            "name": "Remove Member",
+            "id": "2129c4f0-b051-4be5-8fa8-b4378aaf3750",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"memberId\":\"01HYXFF5V96W3YK4TF3F9JDFDE\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/groups/:groupId/remove-member",
+                "host": ["{{base_url}}"],
+                "path": ["groups", ":groupId", "remove-member"],
+                "variable": [
+                  {
+                    "key": "groupId",
+                    "value": "01HYXFEBAC4V4HYGMT72Z75PBV"
+                  }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "12263892-2129c4f0-b051-4be5-8fa8-b4378aaf3750"
+          },
+          {
+            "name": "Get Group Details",
+            "id": "2d9dc927-e66f-4313-8bc0-6f4d2b0e9fd2",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/groups/:groupId",
+                "host": ["{{base_url}}"],
+                "path": ["groups", ":groupId"],
+                "variable": [
+                  {
+                    "key": "groupId",
+                    "value": "01HYXFEBAC4V4HYGMT72Z75PBV"
+                  }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "12263892-2d9dc927-e66f-4313-8bc0-6f4d2b0e9fd2"
+          },
+          {
+            "name": "Get Group Transactions",
+            "id": "0620bda5-7459-4095-abc0-0966e4fcbd7f",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/groups/:groupId/transactions",
+                "host": ["{{base_url}}"],
+                "path": ["groups", ":groupId", "transactions"],
+                "variable": [
+                  {
+                    "key": "groupId",
+                    "value": ""
+                  }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "12263892-0620bda5-7459-4095-abc0-0966e4fcbd7f"
+          },
+          {
+            "name": "Get Group Balances",
+            "id": "1cd90da6-f41d-4125-a683-8eca1c7e2aa9",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/groups/:groupId/balances",
+                "host": ["{{base_url}}"],
+                "path": ["groups", ":groupId", "balances"],
+                "variable": [
+                  {
+                    "key": "groupId",
+                    "value": ""
+                  }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "12263892-1cd90da6-f41d-4125-a683-8eca1c7e2aa9"
+          }
+        ],
+        "id": "c800494b-81c9-4b0b-9450-a846d6e6cc0c",
+        "uid": "12263892-c800494b-81c9-4b0b-9450-a846d6e6cc0c"
+      },
+      {
+        "name": "Users",
+        "item": [
+          {
+            "name": "Get My Profile",
+            "id": "a1b61da2-7458-4975-b5f8-b692780e65a3",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/users/profile",
+                "host": ["{{base_url}}"],
+                "path": ["users", "profile"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-a1b61da2-7458-4975-b5f8-b692780e65a3"
+          },
+          {
+            "name": "Get Contacts",
+            "id": "cf62bf9d-d837-479d-b69f-37f9a8f80410",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/users/contacts",
+                "host": ["{{base_url}}"],
+                "path": ["users", "contacts"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-cf62bf9d-d837-479d-b69f-37f9a8f80410"
+          }
+        ],
+        "id": "fb1a5998-27d6-458a-ac3d-0261ea1048f6",
+        "uid": "12263892-fb1a5998-27d6-458a-ac3d-0261ea1048f6"
+      },
+      {
+        "name": "Transactions",
+        "item": [
+          {
+            "name": "Add Debt",
+            "id": "0381d95d-5d24-4ae4-ba78-b97142a64ad1",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"groupId\":\"01HYXFEBAC4V4HYGMT72Z75PBV\",\r\n    \"amountInCents\":600,\r\n    \"currency\":\"INR\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/transactions/debt",
+                "host": ["{{base_url}}"],
+                "path": ["transactions", "debt"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-0381d95d-5d24-4ae4-ba78-b97142a64ad1"
+          },
+          {
+            "name": "Create Settlement",
+            "id": "996abd94-91dc-471c-ade9-c6ff0df018fa",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"groupId\":\"01HYXFEBAC4V4HYGMT72Z75PBV\",\r\n    \"amountInCents\":200,\r\n    \"currency\":\"INR\",\r\n    \"payeeId\":\"01HYXF81K5KFH7XCXK70T7V2C5\",\r\n    \"payerId\":\"01HYXF81K5KFH7XCXK70T7V2C5\"\r\n    \r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/transactions/settlement",
+                "host": ["{{base_url}}"],
+                "path": ["transactions", "settlement"]
+              }
+            },
+            "response": [],
+            "uid": "12263892-996abd94-91dc-471c-ade9-c6ff0df018fa"
+          }
+        ],
+        "id": "22b4cf65-26fd-4d1f-a4f0-973747a970b9",
+        "uid": "12263892-22b4cf65-26fd-4d1f-a4f0-973747a970b9"
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": [
+        {
+          "key": "token",
+          "value": "{{token}}",
+          "type": "string"
+        }
+      ]
+    },
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "0aa31169-6325-4edd-850c-ca54110f7019",
+          "type": "text/javascript",
+          "packages": {},
+          "exec": [""]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "66bce92c-88ef-4479-9835-2a6275646acf",
+          "type": "text/javascript",
+          "packages": {},
+          "exec": [""]
+        }
+      }
+    ],
+    "variable": [
+      {
+        "key": "base_url",
+        "value": "http://localhost:8080",
+        "type": "string"
+      },
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMUhZWEY4MUs1S0ZIN1hDWEs3MFQ3VjJDNSIsImlhdCI6MTcxNjgyODUwNSwiZXhwIjoxNzE5NDIwNTA1fQ.LiZI4MlbThuLvyOvWRxEieRzAbY3L3ikCRg3IxeMKXw",
+        "type": "string"
+      }
+    ]
+  }
+}
