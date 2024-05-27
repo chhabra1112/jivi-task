@@ -11,7 +11,7 @@ import {
   TransactionRepositoryContract,
 } from '@app/repositories';
 import {
-  CreateTransactionDto,
+  CreateDebtDto,
   TransactionPartyDto,
 } from '@app/validators/transactions';
 import { ExceptionsHelper, ValidationFailed } from '@libs/boat';
@@ -57,10 +57,7 @@ export class CreateDebtTask {
     }));
   }
 
-  async createNew(
-    inputs: CreateTransactionDto,
-    user: UserModel,
-  ): Promise<void> {
+  async createNew(inputs: CreateDebtDto, user: UserModel): Promise<void> {
     const group = await this.groups.firstWhere({ id: inputs.groupId });
     await (user as UserModel)
       .$fetchGraph('groups')
@@ -131,6 +128,7 @@ export class CreateDebtTask {
       description: payload.description,
       paidAt: payload.paidAt ?? new Date(),
       userId: payload.userId,
+      groupId: payload.groupId,
     });
   }
 
@@ -145,6 +143,7 @@ export class CreateDebtTask {
         type: partyType,
         amountInCents: party.amountInCents,
         currency: transaction.currency,
+        transactionId: transaction.id,
         userId: party.userId,
       });
     }

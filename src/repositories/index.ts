@@ -12,3 +12,6 @@ export * from './transaction/database';
 
 export * from './transactionParty/contract';
 export * from './transactionParty/database';
+
+export * from './settlement/contract';
+export * from './settlement/database';

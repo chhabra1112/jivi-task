@@ -6,4 +6,6 @@ export class ResponseMessages {
   static readonly GROUP_MEMBER_REMOVED = 'Group member is removed.';
   static readonly GROUP_MEMBERS_ADDED = 'Group members are added.';
   static readonly TRANSACTION_ADDED = 'Transaction successfully added.';
+  static readonly TRANSACTION_DELETED = 'Transaction successfully deleted.';
+  static readonly AMOUNT_SETTLED = 'Amount settled successfully.';
 }

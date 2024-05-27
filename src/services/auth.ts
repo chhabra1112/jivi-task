@@ -39,7 +39,6 @@ export class AuthService {
     let user;
 
     if (!inputs.email) {
-      console.log('samaan', inputs);
       user = await this.userRepo.firstWhere(
         {
           phoneNumber: inputs.phoneNumber,
@@ -55,7 +54,6 @@ export class AuthService {
         false,
       );
     }
-    console.log('samaan', user);
     if (!user) {
       user = await this.userRepo.create({
         id: generateUlid(),
@@ -77,11 +75,6 @@ export class AuthService {
 
   async doPasswordLogin(inputs: PasswordLoginDto): Promise<{ token: string }> {
     const user = await this.userRepo.firstWhere({ email: inputs.email }, false);
-    console.log(
-      'passwords',
-      user.password,
-      await CryptoUtil.hash(inputs.password),
-    );
     ExceptionsHelper.throwIf(
       !user || (await CryptoUtil.compare(inputs.password, user.password)),
       new UnauthorizedException('Invalid Credentials'),

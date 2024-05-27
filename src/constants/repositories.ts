@@ -4,4 +4,5 @@ export class Repositories {
   static readonly TRANSACTIONS_REPO = 'splitapp/transactions/repo';
   static readonly TRANSACTION_PARTIES_REPO = 'splitapp/transactionParties/repo';
   static readonly BALANCES_REPO = 'splitapp/balances/repo';
+  static readonly SETTLEMENTS_REPO = 'splitapp/settlements/repo';
 }

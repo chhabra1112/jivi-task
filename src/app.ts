@@ -14,9 +14,23 @@ import { JwtModule } from '@nestjs/jwt';
 import { CreateUserCommand } from './commands/createUser';
 import { UserController } from './controllers';
 import { GroupsController } from './controllers/groups';
-import { UserService } from './services';
+import { TransactionsService, UserService } from './services';
 import { GroupsService } from './services/groups';
-import { GroupRepository } from './repositories';
+import {
+  BalanceRepository,
+  GroupRepository,
+  SettlementRepository,
+  TransactionPartyRepository,
+  TransactionRepository,
+} from './repositories';
+import { BalancesService } from './services/balances';
+import { RemoveDebtTask } from './services/deleteDebt';
+import { AmountSettlementTask } from './services/settleAmount';
+import { CreateDebtTask } from './services/createDebt';
+import { TransactionBalancesCalculation } from './services/balanceCalculation';
+import { CalculationStrategy } from './strategies/balancesCalculation/constants';
+import { DefaultBalanceCalculationStrategy } from './strategies/balancesCalculation/default';
+import { TransactionsController } from './controllers/transactions';
 
 @Module({
   imports: [
@@ -39,15 +53,40 @@ import { GroupRepository } from './repositories';
       useFactory: (config: ConfigService) => config.get('auth'),
     }),
   ],
-  controllers: [AuthController, UserController, GroupsController],
+  controllers: [
+    AuthController,
+    UserController,
+    GroupsController,
+    TransactionsController,
+  ],
   providers: [
     JwtStrategy,
     AuthService,
     { provide: Repositories.USER_REPO, useClass: UserRepository },
     { provide: Repositories.GROUPS_REPO, useClass: GroupRepository },
+    {
+      provide: Repositories.TRANSACTIONS_REPO,
+      useClass: TransactionRepository,
+    },
+    {
+      provide: Repositories.TRANSACTION_PARTIES_REPO,
+      useClass: TransactionPartyRepository,
+    },
+    { provide: Repositories.BALANCES_REPO, useClass: BalanceRepository },
+    { provide: Repositories.SETTLEMENTS_REPO, useClass: SettlementRepository },
+    {
+      provide: CalculationStrategy.DEFAULT,
+      useClass: DefaultBalanceCalculationStrategy,
+    },
+    TransactionBalancesCalculation,
     CreateUserCommand,
     UserService,
     GroupsService,
+    BalancesService,
+    TransactionsService,
+    RemoveDebtTask,
+    AmountSettlementTask,
+    CreateDebtTask,
   ],
 })
 export class AppModule {}

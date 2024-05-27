@@ -36,7 +36,7 @@ export class TransactionPartyDto {
   userId: string;
 }
 
-export class CreateTransactionDto {
+export class CreateDebtDto {
   @Exists({ table: 'groups', column: 'id' })
   @IsString()
   @IsNotEmpty()
@@ -66,10 +66,6 @@ export class CreateTransactionDto {
   @IsDate()
   @IsOptional()
   paidAt: Date;
-
-  @IsEnum(TransactionType)
-  @IsNotEmpty()
-  type: TransactionType;
 
   @MinLength(1)
   @IsString()

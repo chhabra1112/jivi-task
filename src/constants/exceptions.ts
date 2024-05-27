@@ -4,4 +4,5 @@ export const ExceptionMessages = {
   AUTHX03: 'Scopes not defined',
   AUTHX04: 'Account deleted.',
   GROUP_NOT_FOUND: 'Group not found.',
+  TRANSACTION_NOT_FOUND: 'Transaction not found.',
 };

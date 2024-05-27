@@ -3,3 +3,4 @@ export * from './group';
 export * from './transaction';
 export * from './transactionParty';
 export * from './balance';
+export * from './settlement';

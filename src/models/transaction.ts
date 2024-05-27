@@ -23,8 +23,8 @@ export class TransactionModel extends BaseModel implements ITransaction {
       relation: BaseModel.HasManyRelation,
       modelClass: TransactionPartyModel,
       join: {
-        from: 'transacations.id',
-        to: 'transaction_parties.transacation_id',
+        from: 'transactions.id',
+        to: 'transaction_parties.transactionId',
       },
     },
   };

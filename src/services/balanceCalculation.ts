@@ -5,7 +5,7 @@ import { IBalance } from '@app/interfaces';
 
 @Injectable()
 export class TransactionBalancesCalculation {
-  handle(transactionParties: TransactionPartyModel[]) {
+  handle(transactionParties: TransactionPartyModel[]): IBalance[] {
     const borrowersObject = {};
     const lendersObject = {};
     const currency = transactionParties[0].currency;

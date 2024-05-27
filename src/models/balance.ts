@@ -2,7 +2,7 @@ import { IBalance } from '@app/interfaces';
 import { BaseModel } from '@squareboat/nestjs-objection';
 
 export class BalanceModel extends BaseModel implements IBalance {
-  static tableName = 'transaction_parties';
+  static tableName = 'balances';
   id: string;
   groupId?: string;
   borrowerId?: string;
