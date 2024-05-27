@@ -8,6 +8,7 @@ export class GroupModel extends BaseModel implements IGroup {
   id: string;
   name: string;
   userId: string;
+  members?: UserModel[];
   createdAt: Date;
   updatedAt: Date;
 
